@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2e2hxnnsyy7t"
-path="res://.godot/imported/square.svg-7783a92b947fcec52731c12d212482d1.ctex"
+uid="uid://1yr1v3qquxkh"
+path="res://.godot/imported/icon.svg-937281dbc6e7ba0435124e30fe85aebc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player/square.svg"
-dest_files=["res://.godot/imported/square.svg-7783a92b947fcec52731c12d212482d1.ctex"]
+source_file="res://Assets/Sprites/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-937281dbc6e7ba0435124e30fe85aebc.ctex"]
 
 [params]
 

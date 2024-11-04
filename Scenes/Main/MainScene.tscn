@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsfxu4wdu1cvx"]
 
-[ext_resource type="Texture2D" uid="uid://2e2hxnnsyy7t" path="res://Assets/square.svg" id="1_dtlor"]
-[ext_resource type="Script" path="res://PlayerController.cs" id="3_nh53o"]
+[ext_resource type="Texture2D" uid="uid://2e2hxnnsyy7t" path="res://Assets/Sprites/Player/square.svg" id="1_dtlor"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="2_6ap2s"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dtlor")
-script = ExtResource("3_nh53o")
+script = ExtResource("2_6ap2s")
