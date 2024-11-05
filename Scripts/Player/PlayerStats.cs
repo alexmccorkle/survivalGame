@@ -11,9 +11,12 @@ public partial class PlayerStats : Node
   private float _maxStamina = 100f;
   private float _currentStamina;
 
+  // States(?):
+  private bool _isSprinting = false;
+
   // Stat Decay Rates: (Per Second)
   private const float HUNGER_DECAY_RATE = 1f;
-  private const float STAMINA_REGEN_RATE = 5f;
+  private const float STAMINA_REGEN_RATE = 10f;
 
   public override void _Ready()
   {
@@ -33,17 +36,20 @@ public partial class PlayerStats : Node
 
   private void UpdateHunger(double delta)
   {
-    _currentHealth = Mathf.Max(0, _currentHunger - (HUNGER_DECAY_RATE * (float)delta));
+    _currentHunger = Mathf.Max(0, _currentHunger - (HUNGER_DECAY_RATE * (float)delta));
     EmitSignal(SignalName.HungerChanged, _currentHunger);
   }
 
   private void RegenerateStamina(double delta)
   {
-    if (_currentStamina < _maxStamina)
+    // Make sure we don't regen during sprinting
+    if (!_isSprinting && _currentStamina < _maxStamina)
     {
-      _currentStamina = Mathf.Min(_maxStamina, _currentStamina + (STAMINA_REGEN_RATE));
+      _currentStamina = Mathf.Min(_maxStamina, _currentStamina + (STAMINA_REGEN_RATE * (float)delta));
       EmitSignal(SignalName.StaminaChanged, _currentStamina);
     }
+    // Reset sprinting flag each frame - if we're still sprinting, UseStamina will set it again
+    _isSprinting = false;
   }
 
   private void UpdateHealthBasedOnHunger(double delta)
@@ -83,9 +89,11 @@ public partial class PlayerStats : Node
     if (_currentStamina >= amount)
     {
       _currentStamina -= amount;
+      _isSprinting = true;
       EmitSignal(SignalName.StaminaChanged, _currentStamina);
       return true;
     }
+    GD.Print("Not enough stamina!");
     return false;
   }
 

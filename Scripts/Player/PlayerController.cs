@@ -6,14 +6,18 @@ public partial class PlayerController : Sprite2D
   private float speed = 400.0f;
   private PlayerStats stats;
   private const float SPRINT_SPEED_MULTIPLIER = 1.5f;
-  private const float SPRINT_STAMINA_COST = 20f; // Stamina cost per second
+  private const float SPRINT_STAMINA_COST = 40f; // Stamina cost per second
 
   public override void _Ready()
   {
-    // Create and add PlayerStats as child node
-    stats = new PlayerStats();
-    AddChild(stats);
+    // Get existing PlayerStats node
+    stats = GetNode<PlayerStats>("PlayerStats");
 
+    if (stats == null)
+    {
+      GD.PrintErr("PlayerStats node not found");
+      return;
+    }
 
     // Center the ColorRect in the viewport
     var viewport = GetViewport();
@@ -53,11 +57,12 @@ public partial class PlayerController : Sprite2D
       if (stats.UseStamina(SPRINT_STAMINA_COST * (float)delta))
       {
         currentSpeed *= SPRINT_SPEED_MULTIPLIER;
-      } 
+        GD.Print($"Sprinting! Speed: {currentSpeed}"); // Debug print
+      }
     }
 
     // Move the sprite:
-    Position += velocity * speed * (float)delta;
+    Position += velocity * currentSpeed * (float)delta;
   }
 
   private void OnPlayerDied()

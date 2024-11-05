@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsfxu4wdu1cvx"]
+[gd_scene load_steps=5 format=3 uid="uid://bsfxu4wdu1cvx"]
 
+[ext_resource type="PackedScene" uid="uid://cs2yqk6buvtmu" path="res://Scenes/UI/PlayerStatsUI.tscn" id="1_c13bn"]
 [ext_resource type="Texture2D" uid="uid://2e2hxnnsyy7t" path="res://Assets/Sprites/Player/square.svg" id="1_dtlor"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="2_6ap2s"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStats.cs" id="4_kre5h"]
 
-[node name="Node2D" type="Node2D"]
+[node name="MainScene" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerStatsUI" parent="." instance=ExtResource("1_c13bn")]
+
+[node name="Player" type="Sprite2D" parent="."]
 texture = ExtResource("1_dtlor")
 script = ExtResource("2_6ap2s")
+
+[node name="PlayerStats" type="Node" parent="Player"]
+script = ExtResource("4_kre5h")
