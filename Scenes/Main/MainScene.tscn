@@ -1,17 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsfxu4wdu1cvx"]
+[gd_scene load_steps=6 format=3 uid="uid://bsfxu4wdu1cvx"]
 
 [ext_resource type="PackedScene" uid="uid://cs2yqk6buvtmu" path="res://Scenes/UI/PlayerStatsUI.tscn" id="1_c13bn"]
-[ext_resource type="Texture2D" uid="uid://2e2hxnnsyy7t" path="res://Assets/Sprites/Player/square.svg" id="1_dtlor"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="2_6ap2s"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStats.cs" id="4_kre5h"]
+[ext_resource type="Script" path="res://Scripts/Core/GameManager.cs" id="5_km1yp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63aoa"]
+size = Vector2(32, 32)
 
 [node name="MainScene" type="Node2D"]
 
 [node name="PlayerStatsUI" parent="." instance=ExtResource("1_c13bn")]
 
-[node name="Player" type="Sprite2D" parent="."]
-texture = ExtResource("1_dtlor")
+[node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("2_6ap2s")
 
 [node name="PlayerStats" type="Node" parent="Player"]
 script = ExtResource("4_kre5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(1e-05, 1e-05)
+shape = SubResource("RectangleShape2D_63aoa")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.118064, 0.560372, 0.816357, 1)
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("5_km1yp")

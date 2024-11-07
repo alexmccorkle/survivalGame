@@ -97,6 +97,12 @@ public partial class PlayerStats : Node
     return false;
   }
 
+  public void RestoreHunger(float amount)
+  {
+    _currentHunger = Mathf.Min(_currentHunger + amount, _maxHunger);
+    EmitSignal(SignalName.HungerRestored, amount);
+  }
+
   // Signals for UI Updates and Game Events:
   [Signal]
   public delegate void HealthChangedEventHandler(float newHealth);
@@ -109,4 +115,7 @@ public partial class PlayerStats : Node
 
   [Signal]
   public delegate void PlayerDiedEventHandler();
+
+  [Signal]
+  public delegate void HungerRestoredEventHandler(float amount);
 }

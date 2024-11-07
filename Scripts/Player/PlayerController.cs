@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class PlayerController : Sprite2D
+public partial class PlayerController : CharacterBody2D
 {
   private float speed = 400.0f;
   private PlayerStats stats;
@@ -32,6 +32,16 @@ public partial class PlayerController : Sprite2D
   }
 
 
+  public override void _Input(InputEvent @event)
+  {
+    // Add food spawning test
+    if (@event.IsActionPressed("spawn_food"))
+    {
+      Vector2 spawnOffset = new Vector2(100, 0); // Spawn food 100 pixels to the right
+      GameManager.Instance.SpawnFood("Apple", Position + spawnOffset);
+      GD.Print("Spawned food at: " + (Position + spawnOffset));
+    }
+  }
 
   public override void _Process(double delta)
   {
@@ -62,7 +72,8 @@ public partial class PlayerController : Sprite2D
     }
 
     // Move the sprite:
-    Position += velocity * currentSpeed * (float)delta;
+    Velocity = velocity * currentSpeed;
+    MoveAndSlide();
   }
 
   private void OnPlayerDied()
