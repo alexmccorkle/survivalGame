@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class GameManager : Node
+public partial class GameManager : Node // Singleton
 {
   private static GameManager _instance;
   public static GameManager Instance
@@ -17,11 +17,13 @@ public partial class GameManager : Node
 
   public override void _Ready()
   {
+    // If an instance already exists, get rid of this one
     if (_instance != null)
     {
       QueueFree();
       return;
     }
+    // Set this one as THE instance
     _instance = this;
   }
 

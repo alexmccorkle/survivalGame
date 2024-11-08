@@ -19,15 +19,20 @@ public static class FoodDatabase
       Name = "Apple",
       HungerRestoration = 15f,
       Description = "A fresh apple. Restores some hunger.",
-      TexturePath = "res://Assets/Sprites/Items/Foods/apple.png",
       Color = Colors.Red
+    },
+    ["Berry"] = new FoodData
+    {
+      Name = "Berry",
+      HungerRestoration = 10f,
+      Description = "Yummies!",
+      Color = Colors.BlueViolet
     },
     ["Bread"] = new FoodData
     {
       Name = "Bread",
       HungerRestoration = 30f,
       Description = "A loaf of bread. Good for filling up.",
-      TexturePath = "res://Assets/Sprites/Items/Foods/bread.png",
       Color = new Color (0.82f, 0.65f, 0.40f) // Tan/brown color
     },
     ["Meat"] = new FoodData
@@ -35,7 +40,6 @@ public static class FoodDatabase
       Name = "Meat",
       HungerRestoration = 45f,
       Description = "Cooked meat. Highly nutritious.",
-      TexturePath = "res://Assets/Sprites/Items/Foods/meat.png",
       Color = new Color(0.55f, 0.27f, 0.27f) // Brownish red
     }
   };
