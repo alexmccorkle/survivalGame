@@ -20,9 +20,8 @@ public partial class PlayerController : CharacterBody2D
     }
 
     // Center the ColorRect in the viewport
-    var viewport = GetViewport();
-    var viewportSize = viewport.GetVisibleRect().Size;
-    Position = viewportSize / 2;
+
+    Position = new Vector2(5000, 4000);
 
     // Connect to the death signal
     stats.PlayerDied += OnPlayerDied;

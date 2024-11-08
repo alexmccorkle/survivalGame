@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsfxu4wdu1cvx"]
+[gd_scene load_steps=8 format=3 uid="uid://bsfxu4wdu1cvx"]
 
 [ext_resource type="PackedScene" uid="uid://cs2yqk6buvtmu" path="res://Scenes/UI/PlayerStatsUI.tscn" id="1_c13bn"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="2_6ap2s"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStats.cs" id="4_kre5h"]
 [ext_resource type="PackedScene" uid="uid://dar1vgqudgl5m" path="res://Scenes/Harvestable/HarvestableResource.tscn" id="5_fk4sd"]
 [ext_resource type="Script" path="res://Scripts/Core/GameManager.cs" id="5_km1yp"]
+[ext_resource type="PackedScene" uid="uid://04k13n1jbjte" path="res://Scenes/Levels/WorldBoundary.tscn" id="6_28qvj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63aoa"]
 size = Vector2(32, 32)
@@ -14,7 +15,7 @@ size = Vector2(32, 32)
 [node name="PlayerStatsUI" parent="." instance=ExtResource("1_c13bn")]
 
 [node name="Player" type="CharacterBody2D" parent="."]
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("2_6ap2s")
 
 [node name="PlayerStats" type="Node" parent="Player"]
@@ -31,6 +32,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 color = Color(0.118064, 0.560372, 0.816357, 1)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("5_km1yp")
 
@@ -40,3 +44,6 @@ position = Vector2(239, 451)
 [node name="HarvestableResource2" parent="." instance=ExtResource("5_fk4sd")]
 position = Vector2(1051, 218)
 Type = 1
+
+[node name="WorldBoundary" parent="." instance=ExtResource("6_28qvj")]
+visibility_layer = 2

@@ -1,12 +1,13 @@
 using Godot;
 using System;
 
-public partial class PlayerStatsUI : Control
+public partial class PlayerStatsUI : CanvasLayer
 {
   private ProgressBar _healthBar;
   private ProgressBar _hungerBar;
   private ProgressBar _staminaBar;
   private PlayerStats _playerStats;
+  private Control _control;
 
   // Add fields to store label references
   private Label _healthLabel;
@@ -15,10 +16,14 @@ public partial class PlayerStatsUI : Control
 
   public override void _Ready()
   {
+
+    // Get Control node
+    _control = GetNode<Control>("Control");
+
     // Get references to the ProgressBars
-    _healthBar = GetNode<ProgressBar>("MarginContainer/VBoxContainer/HealthBar");
-    _hungerBar = GetNode<ProgressBar>("MarginContainer/VBoxContainer/HungerBar");
-    _staminaBar = GetNode<ProgressBar>("MarginContainer/VBoxContainer/StaminaBar");
+    _healthBar = _control.GetNode<ProgressBar>("MarginContainer/VBoxContainer/HealthBar");
+    _hungerBar = _control.GetNode<ProgressBar>("MarginContainer/VBoxContainer/HungerBar");
+    _staminaBar = _control.GetNode<ProgressBar>("MarginContainer/VBoxContainer/StaminaBar");
 
     // Configure the progress bars and store label references
     _healthLabel = ConfigureProgressBar(_healthBar, Colors.DarkRed, "Health");
