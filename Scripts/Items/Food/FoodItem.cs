@@ -26,6 +26,12 @@ public partial class FoodItem : Node2D
     // Set up label
     _label.Text = ItemName;
 
+    // Get color of food from database (later this will be sprites)
+    if (FoodDatabase.Foods.TryGetValue(ItemName, out var foodData))
+    {
+      _visual.Color = foodData.Color;
+    }
+
     // Connect signal
     _pickupArea.BodyEntered += OnBodyEntered;
   }

@@ -37,8 +37,8 @@ public partial class PlayerController : CharacterBody2D
     // Add food spawning test
     if (@event.IsActionPressed("spawn_food"))
     {
-      Vector2 spawnOffset = new Vector2(100, 0); // Spawn food 100 pixels to the right
-      GameManager.Instance.SpawnFood("Apple", Position + spawnOffset);
+      Vector2 spawnOffset = new Vector2(50, 0); // Spawn food 50 pixels to the right
+      GameManager.Instance.SpawnRandomFood(Position + spawnOffset);
       GD.Print("Spawned food at: " + (Position + spawnOffset));
     }
   }
